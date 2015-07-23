@@ -1,0 +1,26 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/www/demo/current
+permissions:
+  - object: /var/www/demo/current
+    pattern: "**"
+    owner: www-data
+    group: www-data
+hooks:
+  ApplicationStop:
+    - location: deploy/applicationStop.sh
+      timeout: 10
+  BeforeInstall:
+    - location: deploy/beforeInstall.sh
+      timeout: 10
+  AfterInstall:
+    - location: deploy/afterInstall.sh
+      timeout: 10
+  ApplicationStart:
+    - location: deploy/applicationStart.sh
+      timeout: 10
+  ValidateService:
+    - location: deploy/validateService.sh
+      timeout: 10

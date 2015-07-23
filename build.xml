@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="one4all-webapp" default="build">
+    <property name="toolsdir" value=""/>
+
+    <target name="build"
+            depends="git-info"
+            description=""/>
+
+    <target name="git-info"
+            unless="git-info.done"
+            description="Add basic Git info files">
+        <exec executable="git" output="REVISION">
+            <arg value="log"/>
+            <arg value="--stat"/>
+            <arg value="-3"/>
+        </exec>
+        <exec executable="git" output="SHA1">
+            <arg value="rev-parse"/>
+            <arg value="HEAD"/>
+        </exec>
+        <property name="git-info.done" value="true"/>
+    </target>
+</project>
